@@ -1381,8 +1381,12 @@
     }
 
     .main-slider-two__title {
-        font-size: 64px;
-        line-height: 64px;
+        font-size: 40px;
+        line-height: 45px;
+    }
+
+    .main-slider-two__subtitle {
+        font-size: 23px;
     }
 
     .main-slider-two__text br {
