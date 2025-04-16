@@ -25,9 +25,9 @@
   --alipes-gray-rgb: 130, 126, 120;
   --alipes-white: #ffffff;
   --alipes-white-rgb: 255, 255, 255;
-  --alipes-base: #cd8c66;
+  --alipes-base: #E0AE32;
   --alipes-base-rgb: 205, 140, 102;
-  --alipes-black: #221c13;
+  --alipes-black: #63003D;
   --alipes-black-rgb: 34, 28, 19;
   --alipes-primary: #f6f4f1;
   --alipes-primary-rgb: 246, 244, 241;
@@ -289,7 +289,7 @@ ul {
 .section-title__tagline {
   position: relative;
   display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 16px;
   color: var(--alipes-base);
   font-weight: 500;
@@ -391,7 +391,7 @@ ul {
   animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-  background-image: url("../images/mona-b.svg");
+  background-image: url("../images/mona-c.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 190px auto;
@@ -4601,7 +4601,7 @@ ul {
   font-size: 15px;
   font-weight: 500;
   line-height: 26px;
-  color: #7a736a;
+  color: var(--alipes-white);
 }
 
 .site-footer__bottom-text a {
@@ -4643,7 +4643,7 @@ ul {
   justify-content: center;
   text-align: center;
   color: var(--alipes-white);
-  background-color: #1a150e;
+  background-color: #A77013;
   font-size: 14px;
   border-radius: 50%;
   overflow: hidden;
@@ -4957,6 +4957,7 @@ ul {
 
 .services-one__btn {
   background-color: var(--alipes-base);
+  color: var(--alipes-black);
 }
 
 .services-one__btn::before {
@@ -10189,10 +10190,12 @@ ul {
   background-color: var(--alipes-base);
   display: block;
   margin: 0 auto;
+  color: var(--alipes-black);
 }
 
 .contact-page__btn::before {
   background-color: var(--alipes-black);
+  color: var(--aplies-white);
 }
 
 .contact-page__input-box.text-message-box {
