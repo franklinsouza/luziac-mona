@@ -12027,7 +12027,7 @@ ul {
 .gallery-carousel-page {
   position: relative;
   display: block;
-  padding: 120px 0 182px;
+  padding: 0 0 182px;
 }
 
 .gallery-carousel-page .team-one__single {
