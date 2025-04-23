@@ -10185,6 +10185,13 @@ ul {
   font-weight: 500;
 }
 
+.contact-page__form label.error {
+  width: 100%;
+  background-color: #bf0644;
+  color: #fff;
+  padding: 2px 8px;
+}
+
 .contact-page__btn {
   border: none;
   background-color: var(--alipes-base);

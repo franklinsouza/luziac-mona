@@ -334,12 +334,14 @@
           required: true,
           email: true
         },
-        message: {
-          required: true
-        },
-        subject: {
+        phone: {
           required: true
         }
+      },
+      messages: {
+        name: "O campo Nome é obrigatório.",
+        email: "O campo E-mail é obrigatório.",
+        phone: "O campo Whatsapp é obrigatório"
       },
       submitHandler: function (form) {
         // sending value with ajax request
