@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     }
 
     // Se precisar fazer algo com os dados:
-    console.log('Dados recebidos:', body);
+    console.log('Dados recebidos:', nome, email, tel_celular);
 
     return res.status(200).json({ sucesso: true });
   }
