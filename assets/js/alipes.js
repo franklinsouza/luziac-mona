@@ -322,6 +322,8 @@
     });
   }
 
+$('[name="tel_celular"]').mask('(00) 00000-0000');
+
 $(".contact-page__form").validate({
     rules: {
       nome: {
