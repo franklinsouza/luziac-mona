@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({ nome, email, tel_celular })
     });
 
-    const result = await response.text(); // ou .json() se preferir
+    const result = await response.json(); // ou .json() se preferir
     res.status(200).json({ success: true, result });
   } catch (error) {
     console.error('Erro ao enviar para Hypnobox:', error);
