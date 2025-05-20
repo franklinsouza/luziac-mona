@@ -322,43 +322,35 @@
     });
   }
 
+$(".contact-page__form").validate({
+    submitHandler: function (form) {
+      const data = {
+        nome: $(form).find("[name='name']").val(),
+        email: $(form).find("[name='email']").val(),
+      };
 
-  if ($(".contact-form-validated").length) {
-    $(".contact-form-validated").validate({
-      // initialize the plugin
-      rules: {
-        name: {
-          required: true
+      console.log(data);
+
+      fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
         },
-        email: {
-          required: true,
-          email: true
-        },
-        phone: {
-          required: true
-        }
-      },
-      messages: {
-        name: "O campo Nome é obrigatório.",
-        email: "O campo E-mail é obrigatório.",
-        phone: "O campo Whatsapp é obrigatório"
-      },
-      submitHandler: function (form) {
-        // sending value with ajax request
-        $.post(
-          $(form).attr("action"),
-          $(form).serialize(),
-          function (response) {
-            $(form).parent().find(".result").append(response);
-            $(form).find('input[type="text"]').val("");
-            $(form).find('input[type="email"]').val("");
-            $(form).find("textarea").val("");
-          }
-        );
-        return false;
-      }
-    });
-  }
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(response => {
+          console.log("Sucesso:", response);
+          // Aqui você pode exibir uma mensagem de sucesso, esconder o formulário etc.
+        })
+        .catch(err => {
+          console.error("Erro:", err);
+        });
+
+      // IMPORTANTE: Não retorna true, para o jQuery Validate **não tentar submeter**
+      return false;
+    }
+  });
 
   // mailchimp form
   if ($(".mc-form").length) {

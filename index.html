@@ -27,6 +27,14 @@
     <meta name="twitter:description" content="Nossas raízes sempre devem ser celebradas. Abrace a tradição da Mooca em um empreendimento que honrará a história do bairro.">
     <meta name="twitter:image" content="https://apenamooca.com.br/assets/images/og-image.png">
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TLFL23JW');</script>
+    <!-- End Google Tag Manager -->
+
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -65,13 +73,17 @@
 </head>
 
 <body class="custom-cursor">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLFL23JW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div class="custom-cursor__cursor"></div>
     <div class="custom-cursor__cursor-two"></div>
 
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader__image"></div>
-    </div>
+    </div> -->
     <!-- /.preloader -->
 
     <div class="page-wrapper">
@@ -391,8 +403,7 @@
                 <div class="contact-page__inner">
                     <h3 class="text-center mb-3">POUCAS UNIDADES DISPONÍVEIS!</h3>
                     <div class="col-lg-8 offset-lg-2">
-                        <form action="assets/inc/sendemail.php" class="contact-page__form contact-form-validated"
-                            novalidate="novalidate">
+                        <form method="post" class="contact-page__form">
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="contact-page__input-box">
@@ -406,18 +417,19 @@
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="contact-page__input-box">
-                                        <input type="text" placeholder="WhatsApp *" name="phone">
+                                        <input type="text" placeholder="WhatsApp *" name="whatsapp">
                                     </div>
                                 </div>
                                 <div class="col-xl-12 text-center">
                                     <label class="mb-3">
-                                        <input type="checkbox"/>
+                                        <input type="checkbox" name="terms"/>
                                         Termos de aceite
+                                        <label id="terms-error"></label>
                                     </label>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="contact-page__btn-box">
-                                        <button type="submit" class="thm-btn contact-page__btn">Aproveitar oportunidade única</button>
+                                        <button type="submit" class="thm-btn contact-page__btn btn">Aproveitar oportunidade única</button>
                                     </div>
                                 </div>
                             </div>
@@ -487,23 +499,9 @@
     </div>
     <!-- /.mobile-nav__wrapper -->
 
-    <div class="search-popup">
-        <div class="search-popup__overlay search-toggler"></div>
-        <!-- /.search-popup__overlay -->
-        <div class="search-popup__content">
-            <form action="#">
-                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-                <input type="text" id="search" placeholder="Search Here..." />
-                <button type="submit" aria-label="search submit" class="thm-btn">
-                    <i class="icon-magnifying-glass"></i>
-                </button>
-            </form>
-        </div>
-        <!-- /.search-popup__content -->
-    </div>
-    <!-- /.search-popup -->
-
-    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="icon-up-arrow"></i></a>
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+        <i class="icon-up-arrow"></i>
+    </a>
 
 
     <script src="assets/vendors/jquery/jquery-3.6.0.min.js"></script>
