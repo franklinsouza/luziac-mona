@@ -323,57 +323,49 @@
   }
 
 $(".contact-page__form").validate({
-  // messages: {
-  //   name: "O campo Nome é obrigatório.",
-  //   email: "O campo E-mail é obrigatório.",
-  //   whatsapp: "O campo Whatsapp é obrigatório"
-  // },
-  // errorPlacement: function (error, element) {
-  //   if (element.attr("name") === "terms") {
-  //     error.insertAfter("#terms-error-placeholder");
-  //   } else {
-  //     error.insertAfter(element);
-  //   }
-  // },
-  submitHandler: async function (form) {
-    const formData = {
-      nome: $(form).find("[name='name']").val(),
-      email: $(form).find("[name='email']").val(),
-      tel_celular: $(form).find("[name='whatsapp']").val()
-    };
+    rules: {
+      nome: {
+        required: true,
+        minlength: 2
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      tel_celular: {
+        required: true,
+        minlength: 8
+      }
+    },
+    messages: {
+      nome: "Por favor, insira seu nome.",
+      email: "Insira um e-mail válido.",
+      tel_celular: "Insira um telefone válido."
+    },
+    submitHandler: function (form) {
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
 
-    console.log(formData);
-
-    try {
-      const crmResponse = await fetch('/api/send', {
+      fetch('/api/send/', {
         method: 'POST',
         headers: {
-          accept: 'application/json',
-          'content-type': 'application/json'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(data)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao enviar');
+        return res.json();
+      })
+      .then(response => {
+        alert('Enviado com sucesso!');
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Erro ao enviar os dados.');
       });
-
-      if (crmResponse.ok) {
-        console.log('CRM response:', crmResponse);
-        alert('Obrigado! Entraremos em contato em breve.');
-
-        let data = await crmResponse.json();
-
-        console.log(data);
-
-        $(form)[0].reset();
-      } else {
-        console.error('Erro ao enviar o formulário:', crmResponse.status);
-      }
-
-    }catch(erro){
-      console.log(erro);
     }
-
-    return false;
-  }
-});
+  });
 
   // mailchimp form
   if ($(".mc-form").length) {

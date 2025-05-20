@@ -1,42 +1,25 @@
+// api/send.js
+
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { nome, email, tel_celular} = req.body;
-
-    try {
-      const crmResponse = await fetch('http://lopesdialogo.hypnobox.com.br', {
-        method: 'POST',
-        headers: {
-          accept: 'application/json',
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          nome,
-          email,
-          tel_celular
-        })
-      });
-
-      if(crmResponse.ok){
-        console.log('CRM Response:', crmResponse);
-        
-        let data = await crmResponse.json();
-        console.log(data);
-
-        return res.status(200).json(data);
-      }else{
-        console.log('CRM Response:', crmResponse);
-        return res.status(400).json({ sucesso: false });
-      }
-
-    }catch(err){
-      console.log(err);
-    }
-
-    // Se precisar fazer algo com os dados:
-    console.log('Dados recebidos:', nome, email, tel_celular);
-
-    return res.status(200).json({ sucesso: true });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Método não permitido' });
   }
 
-  return res.status(405).json({ erro: 'Método não permitido' });
+  const { nome, email, tel_celular } = req.body;
+
+  try {
+    const response = await fetch('http://lopesdialogo.hypnobox.com.br', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ nome, email, tel_celular })
+    });
+
+    const result = await response.text(); // ou .json() se preferir
+    res.status(200).json({ success: true, result });
+  } catch (error) {
+    console.error('Erro ao enviar para Hypnobox:', error);
+    res.status(500).json({ success: false, error: 'Erro no envio.' });
+  }
 }
