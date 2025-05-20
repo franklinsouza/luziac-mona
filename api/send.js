@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     const result = await response.json(); // ou .json() se preferir
     res.status(200).json({ success: true, result });
   } catch (error) {
-    console.error('Erro ao enviar para Hypnobox:', error);
+    console.log('Erro ao enviar para Hypnobox:', error);
     res.status(500).json({ success: false, error: 'Erro no envio.' });
   }
 }
