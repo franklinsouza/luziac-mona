@@ -323,33 +323,56 @@
   }
 
 $(".contact-page__form").validate({
-    submitHandler: function (form) {
-      const data = {
-        nome: $(form).find("[name='name']").val(),
-        email: $(form).find("[name='email']").val(),
-      };
-
-      console.log(data);
-
-      fetch("/api/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-        .then(res => res.json())
-        .then(response => {
-          console.log("Sucesso:", response);
-          // Aqui você pode exibir uma mensagem de sucesso, esconder o formulário etc.
-        })
-        .catch(err => {
-          console.error("Erro:", err);
-        });
-
-      // IMPORTANTE: Não retorna true, para o jQuery Validate **não tentar submeter**
-      return false;
+  messages: {
+    name: "O campo Nome é obrigatório.",
+    email: "O campo E-mail é obrigatório.",
+    whatsapp: "O campo Whatsapp é obrigatório"
+  },
+  errorPlacement: function (error, element) {
+    if (element.attr("name") === "terms") {
+      error.insertAfter("#terms-error-placeholder");
+    } else {
+      error.insertAfter(element);
     }
+  },
+  submitHandler: async function (form) {
+    const formData = {
+      nome: $(form).find("[name='name']").val(),
+      email: $(form).find("[name='email']").val(),
+      tel_celular: $(form).find("[name='whatsapp']").val()
+    };
+
+    console.log(formData);
+
+    try {
+      const crmResponse = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (crmResponse.ok) {
+        console.log('CRM response:', crmResponse);
+        alert('Obrigado! Entraremos em contato em breve.');
+
+        let data = await crmResponse.json();
+
+        console.log(data);
+
+        $(form)[0].reset();
+      } else {
+        console.error('Erro ao enviar o formulário:', crmResponse.status);
+      }
+
+    }catch(erro){
+      console.log(erro);
+    }
+
+    return false;
+  }
   });
 
   // mailchimp form
