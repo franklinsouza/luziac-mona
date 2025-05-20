@@ -8,12 +8,12 @@ export default async function handler(req, res) {
   const { nome, email, tel_celular } = req.body;
 
   try {
-    const response = await fetch('http://lopesdialogo.hypnobox.com.br', {
+    const response = await fetch('http://lopesdialogo.hypnobox.com.br/email.receber.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ nome, email, tel_celular })
+      body: JSON.stringify({ nome, email, tel_celular, id_produto: "281" })
     });
 
     const result = await response.json(); // ou .json() se preferir

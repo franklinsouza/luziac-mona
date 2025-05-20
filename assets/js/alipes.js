@@ -335,14 +335,26 @@ $(".contact-page__form").validate({
       tel_celular: {
         required: true,
         minlength: 8
+      },
+      terms: {
+        required: true
       }
     },
     messages: {
       nome: "Por favor, insira seu nome.",
       email: "Insira um e-mail válido.",
-      tel_celular: "Insira um telefone válido."
+      tel_celular: "Insira um telefone válido.",
+      terms: "Você deve aceitar os termos"
+    },
+    errorPlacement: function (error, element) {
+      if (element.attr("name") === "terms") {
+        error.appendTo("#terms-error");
+      } else {
+        error.insertAfter(element);
+      }
     },
     submitHandler: function (form) {
+      let formStatus = $('.form-status');
       const formData = new FormData(form);
       const data = Object.fromEntries(formData);
 
@@ -354,15 +366,20 @@ $(".contact-page__form").validate({
         body: JSON.stringify(data)
       })
       .then(res => {
-        if (!res.ok) throw new Error('Erro ao enviar');
+        if (!res.ok){
+          formStatus.html('<p style="background-color: #bf0644; color: #fff; width: 300px; padding: 10px; border-radius: 4px; margin: 0 auto;">Erro ao enviar o formulário.</p>');
+          throw new Error('Erro ao enviar');
+        } 
+        
         return res.json();
       })
       .then(response => {
-        alert('Enviado com sucesso!');
+        console.log(response);
+        formStatus.html('<p style="background-color: #198754; color: #fff; width: 300px; padding: 10px; border-radius: 4px; margin: 0 auto;">Mensagem enviada com sucesso!</p>');
       })
       .catch(err => {
         console.error(err);
-        alert('Erro ao enviar os dados.');
+        formStatus.html('<p style="background-color: #bf0644; color: #fff; width: 300px; padding: 10px; border-radius: 4px; margin: 0 auto;">Erro ao enviar o formulário.</p>');
       });
     }
   });
