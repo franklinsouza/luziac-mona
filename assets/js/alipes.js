@@ -323,18 +323,18 @@
   }
 
 $(".contact-page__form").validate({
-  messages: {
-    name: "O campo Nome é obrigatório.",
-    email: "O campo E-mail é obrigatório.",
-    whatsapp: "O campo Whatsapp é obrigatório"
-  },
-  errorPlacement: function (error, element) {
-    if (element.attr("name") === "terms") {
-      error.insertAfter("#terms-error-placeholder");
-    } else {
-      error.insertAfter(element);
-    }
-  },
+  // messages: {
+  //   name: "O campo Nome é obrigatório.",
+  //   email: "O campo E-mail é obrigatório.",
+  //   whatsapp: "O campo Whatsapp é obrigatório"
+  // },
+  // errorPlacement: function (error, element) {
+  //   if (element.attr("name") === "terms") {
+  //     error.insertAfter("#terms-error-placeholder");
+  //   } else {
+  //     error.insertAfter(element);
+  //   }
+  // },
   submitHandler: async function (form) {
     const formData = {
       nome: $(form).find("[name='name']").val(),
@@ -373,7 +373,7 @@ $(".contact-page__form").validate({
 
     return false;
   }
-  });
+});
 
   // mailchimp form
   if ($(".mc-form").length) {
