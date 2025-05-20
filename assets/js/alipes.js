@@ -377,6 +377,7 @@ $(".contact-page__form").validate({
       })
       .then(response => {
         console.log(response);
+        form.reset();
         formStatus.html('<p style="background-color: #198754; color: #fff; width: 300px; padding: 10px; border-radius: 4px; margin: 0 auto;">Mensagem enviada com sucesso!</p>');
       })
       .catch(err => {
