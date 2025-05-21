@@ -13,13 +13,12 @@ export default async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ nome, email, tel_celular, id_produto: "281" })
+      body: JSON.stringify({ nome, email, tel_celular, id_produto: "281", midia: "Landing Page"})
     });
 
-    const result = await response.json(); // ou .json() se preferir
+    const result = await response.json();
     res.status(200).json({ success: true, result });
   } catch (error) {
-    //console.log('Erro ao enviar para Hypnobox:', error);
     res.status(500).json({ success: false, error: 'Erro no envio.' });
   }
 }

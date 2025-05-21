@@ -384,7 +384,7 @@ $(".contact-page__form").validate({
         formStatus.html('<p style="background-color: #bf0644; color: #fff; width: 300px; padding: 10px; border-radius: 4px; margin: 0 auto;">Erro ao enviar o formulário.</p>');
       });
     }
-  });
+});
 
   // mailchimp form
   if ($(".mc-form").length) {
