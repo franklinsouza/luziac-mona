@@ -447,10 +447,15 @@ $(".contact-page__form").validate({
     $.each(groups, function () {
       $(this).magnificPopup({
         type: "image",
+        tClose: 'Fechar',
+        tLoading: 'Carregando...',
         closeOnContentClick: true,
         closeBtnInside: false,
         gallery: {
-          enabled: true
+          enabled: true,
+          tPrev: 'Anterior',
+          tNext: 'Próxima',
+          tCounter: '%curr% de %total%'
         }
       });
     });
